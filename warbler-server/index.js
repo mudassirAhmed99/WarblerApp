@@ -1,13 +1,16 @@
 const express = require('express');
+require('dotenv').config();
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { response } = require('express');
-const errorHandler = require('./handlers/error')
+const errorHandler = require('./handlers/error');
+const authRoutes = require('./routes/auth');
 
 const PORT = 8081;
 app.use(cors());
 app.use(bodyParser.json());
+app.use('/api/auth', authRoutes);
 
 // all my routes here. they will come later
 
