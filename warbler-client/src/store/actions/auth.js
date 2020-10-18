@@ -1,6 +1,6 @@
 import { apiCall, setTokenHeader } from "../../services/api";
 import { SET_CURRENT_USER } from "../actionTypes";
-import { addError, removeError } from './errors';
+import { addError, removeError } from "./errors";
 
 export function setCurrentUser(user) {
   return {
@@ -9,16 +9,16 @@ export function setCurrentUser(user) {
   };
 }
 
-export function setAuthorizationToken(token){
+export function setAuthorizationToken(token) {
   setTokenHeader(token);
 }
 
-export function logout(){
+export function logout() {
   return dispatch => {
     localStorage.clear();
     setAuthorizationToken(false);
     dispatch(setCurrentUser({}));
-  }
+  };
 }
 
 export function authUser(type, userData) {
@@ -30,7 +30,7 @@ export function authUser(type, userData) {
           localStorage.setItem("jwtToken", token);
           setAuthorizationToken(token);
           dispatch(setCurrentUser(user));
-          dispatch(removeError);
+          dispatch(removeError());
           resolve(); // indicate that the API call succeeded
         })
         .catch(err => {
@@ -38,5 +38,5 @@ export function authUser(type, userData) {
           reject(); // indicate the API call failed
         });
     });
-  };
+  }
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MessageTimeline from './MessageTimeline';
 
 const Homepage = ({ currentUser }) => {
   // user not logged in
@@ -16,7 +17,7 @@ const Homepage = ({ currentUser }) => {
   }
   return (
     <div>
-      <h1>LOGGED IN!!</h1>
+      <MessageTimeline profileImageUrl={currentUser.user.profileImageUrl} username={currentUser.user.username}/>
     </div>
   )
 };
